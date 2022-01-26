@@ -56,7 +56,40 @@ function run {
 }
 
 function add {
-    Write-Output "Coming soon :)";
+    do {
+        $name = (Read-Host "Name").Trim();
+        if ($name.length -eq 0) {
+            Write-Host "Name may not be empty." -ForegroundColor 'Red';
+        }
+        elseif ($name.indexof(' ') -ne -1) {
+            Write-Host "Name may not contain spaces." -ForegroundColor 'Red';
+        }
+        elseif (-not (isNameUnique $name)) {
+            Write-Host "Name must be unique." -ForegroundColor 'Red';
+        }
+    }
+    while ($name.length -eq 0 -or $name.indexof(' ') -ne -1 -or -not (isNameUnique $name));
+
+    do {
+        $description = (Read-Host "Description").Trim();
+        if ($description.length -eq 0) {
+            Write-Host "Description may not be empty." -ForegroundColor 'Red';
+        }
+    }
+    while ($description.length -eq 0);
+
+    Write-Output "`nYou may enter multiple sub-commands that will be part of this odd command.`nTo finish, enter a blank line.`n";
+    $commands = New-Object -TypeName "System.Collections.ArrayList";
+    do {
+        $newCommand = (Read-Host "Command").Trim();
+        if ($newCommand.length -gt 0) {
+            $null = $commands.Add($newCommand);
+        }
+    }
+    while ($newCommand.length -gt 0);
+
+    $config.commands += @{name = $name; description = $description; commands = $commands};
+    ConvertTo-Json $config -Depth 10 | Set-Content $configFilePath;
 }
 
 function isNameUnique {
