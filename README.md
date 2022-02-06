@@ -3,8 +3,8 @@ Odd Commands is a PowerShell tool for storing and running commands you may not u
 
 ## Installation
 
-1. Clone this repository to your computer.
-2. Define an alias in your PowerShell profile.
-    
-    `Set-Alias -Name "oc" -Value "C:\path\to\odd-commands.ps1";`
-3. Define your odd commands using `oc add` or reference `oc help` for more information.
+1. Clone this repository to your PowerShell modules directory.
+
+    The path to `Odd-Commands.psm1` should be `C:\Users\your username\Documents\PowerShell\Modules\Odd-Commands\Odd-Commands.psm1`.
+
+2. Run `Help oc` for usage information. The module will be automatically imported the first time you use it.
