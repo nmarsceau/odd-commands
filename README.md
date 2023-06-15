@@ -1,3 +1,7 @@
+> 🗄️ This repository is **archived**.
+> 
+> Instead of using this tool, I would recommend adding aliases and functions directly to your PowerShell profile.
+
 # Odd Commands
 Odd Commands is a PowerShell tool for storing and running commands you may not use frequently and are too long or awkward to memorize.
 
